@@ -6,4 +6,6 @@ source LOAD_G09
 
 cd /home/cat-test/ck3
 
-bash 2.sh *.com
+# Use it as bash xxx.sh <procs> <Command> <args of Command's args>
+# Eg: bash xxx.sh 3.sh    3     "mv "     "aa.c aa.c.2" "bb.c bb.c.2" etc...
+bash parallel.sh 5 "bash run-g09.sh " *.com
