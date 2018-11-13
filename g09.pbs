@@ -1,0 +1,9 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=48:00:00
+
+source LOAD_G09
+
+cd /home/cat-test/ck3
+
+bash 2.sh *.com
