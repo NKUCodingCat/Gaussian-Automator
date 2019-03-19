@@ -4,7 +4,7 @@ filename="${fullfile%.*}"
 Log="$filename".log
 
 Counter=0; LIMIT=5
-PY_SCR='import cclib, argparse; Q =  {1:"H", 2:"He", 3:"Li", 4:"Be", 5:"B", 6:"C", 7:"N", 8:"O", 9:"F", 
+PY_SCR='import cclib, argparse, sys; Q =  {1:"H", 2:"He", 3:"Li", 4:"Be", 5:"B", 6:"C", 7:"N", 8:"O", 9:"F", 
        10:"Ne", 11:"Na", 12:"Mg", 13:"Al", 14:"Si", 15:"P", 16:"S", 17:"Cl", 18:"Ar", 19:"K", 20:"Ca", 
        21:"Sc", 22:"Ti", 23:"V", 24:"Cr", 25:"Mn", 26:"Fe", 27:"Co", 28:"Ni", 29:"Cu", 30:"Zn", 31:"Ga",
        32:"Ge", 33:"As", 34:"Se", 35:"Br", 36:"Kr", 37:"Rb", 38:"Sr", 39:"Y", 40:"Zr", 41:"Nb", 42:"Mo", 
@@ -16,7 +16,7 @@ PY_SCR='import cclib, argparse; Q =  {1:"H", 2:"He", 3:"Li", 4:"Be", 5:"B", 6:"C
        98:"Cf", 99:"Es", 100:"Fm", 101:"Md", 102:"No", 103:"Lr", 104:"Rf", 105:"Db", 106:"Sg", 107:"Bh", 
        108:"Hs", 109:"Mt", 110:"Ds", 111:"Rg", 112:"Cn", 113:"Uut", 114:"Fl", 115:"Uup", 116:"Lv", 117:"Uus",
        118:"Uuo"}; parser = argparse.ArgumentParser(description="Process log file");
-       parser.add_argument("Gau_log", nargs=1); args = parser.parse_args(); parser = cclib.io.ccopen(args.Gau_log[0]); data = parser.parse(); 
+       parser.add_argument("Gau_log", nargs=1); args = parser.parse_args(); parser = cclib.io.ccopen(args.Gau_log[0], logstream=sys.stderr); data = parser.parse(); 
        print "\n".join(map(lambda x: "%-3s  %.6f  %.6f  %.6f"%tuple([x[0], ]+x[1]), zip(map(lambda x: Q[x], data.atomnos.tolist()), data.atomcoords[-1].tolist())))'
 PY_file=$(mktemp /tmp/py_XXXX.py); echo $PY_SCR > "$PY_file";
 
